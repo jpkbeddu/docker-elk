@@ -17,6 +17,11 @@ services:
         read_only: true
     ports:
       - '8200:8200'
+    environment:
+      APM_USERNAME: ${APM_USERNAME}
+      APM_PASSWORD: ${APM_PASSWORD}
+      ES_USERNAME: ${ES_USERNAME}
+      ES_PASSWORD: ${ES_PASSWORD}
     networks:
       - elk
     depends_on:

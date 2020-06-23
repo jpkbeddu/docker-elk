@@ -19,7 +19,7 @@ services:
       - "9300:9300"
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
-      ELASTIC_PASSWORD: changeme
+      # ELASTIC_PASSWORD: changeme
       # Use single node discovery in order to disable production mode and avoid bootstrap checks
       # see https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
       discovery.type: single-node
@@ -46,6 +46,10 @@ services:
       - "9600:9600"
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+      ES_USERNAME: ${ES_USERNAME}
+      ES_PASSWORD: ${ES_PASSWORD}
+      LOGSTASH_USERNAME: ${LOGSTASH_USERNAME}
+      LOGSTASH_PASSWORD: ${LOGSTASH_PASSWORD}
     networks:
       - elk
     depends_on:
@@ -63,6 +67,9 @@ services:
         read_only: true
     ports:
       - "5601:5601"
+    environment:
+      KIBANA_USERNAME: ${KIBANA_USERNAME}
+      KIBANA_PASSWORD: ${KIBANA_PASSWORD}      
     networks:
       - elk
     depends_on:
